@@ -29,17 +29,27 @@
     </mat-card-header>
 
     <ion-card-content>
-      <ion-item>
-        <ion-label position="floating">Correo electrónico</ion-label>
-        <ion-input type="email"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password"></ion-input>
-      </ion-item>
-    
-        <ion-button matButton elevated color="secondary" class="btn-login" (click)="onLogin()">Iniciar sesión</ion-button>
-      
+     <form [formGroup]="loginForm">
+  <ion-item>
+    <ion-label position="floating">Correo electrónico</ion-label>
+    <ion-input type="email" formControlName="email"></ion-input>
+  </ion-item>
+  <ion-text color="danger" *ngIf="email?.touched && email?.invalid">
+    <p *ngIf="email?.errors?.['required']">El correo es obligatorio.</p>
+    <p *ngIf="email?.errors?.['email']">Correo inválido.</p>
+  </ion-text>
+
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input type="password" formControlName="password"></ion-input>
+  </ion-item>
+  <ion-text color="danger" *ngIf="password?.touched && password?.invalid">
+    <p *ngIf="password?.errors?.['required']">La contraseña es obligatoria.</p>
+  </ion-text>
+
+  <ion-button matButton elevated color="secondary" class="btn-login" (click)="onLogin()">Iniciar sesión</ion-button>
+</form>
+
     </ion-card-content>
   </mat-card>
 </ion-content>

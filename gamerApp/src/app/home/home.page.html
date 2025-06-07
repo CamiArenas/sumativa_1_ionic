@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Catálogo
     </ion-title>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -12,7 +12,7 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Catálogo</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -32,74 +32,44 @@
   <mat-card class="example-card" appearance="outlined">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    <mat-card-title>Catálogo</mat-card-title>
+    <mat-card-subtitle>Compra tus juegos</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Photo of a Shiba Inu">
   <mat-card-content>
     <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-      bred for hunting.
+      Descubre una amplia selección de juegos para todos los gustos. Desde aventuras épicas hasta desafíos multijugador. ¡Encuentra tu próximo favorito hoy!.
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <ion-button matButton>LIKE</ion-button>
-    <ion-button matButton>SHARE</ion-button>
+    <ion-button (click)="verCatalogo()" matButton>Ver catálogo</ion-button>
+    
   </mat-card-actions>
 </mat-card>
 
-<mat-card  style="background-color: aliceblue;
+<mat-card  style="background-color: #13e8f0;
 color: rgb(0, 0, 0);">
   <mat-card-content class="ion-text-center">
-    <h2>Revisa nuestro catálogo</h2>
-    <ion-button>Ir</ion-button>
+    <h2>Juegos populares</h2>
+    <ion-button color="primary">Ir</ion-button>
   </mat-card-content>
 </mat-card>
 
 <!-- Cards with media area -->
 <mat-card class="example-card" appearance="outlined">
-  <div>
+  <div *ngFor="let game of games">
     <mat-card-header>
-    <mat-card-title-group>
-      <img mat-card-sm-image src="https://images.unsplash.com/photo-1629760946220-5693ee4c46ac?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Z2FtZXN8ZW58MHx8MHx8fDA%3D" >
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Small</mat-card-subtitle>
-      
-    </mat-card-title-group>
-  </mat-card-header>
-  <mat-card-content>
-    {{longText}}
-  </mat-card-content>
-  </div>
-
-  <div>
-    <mat-card-header>
-    <mat-card-title-group>
-      <img mat-card-sm-image src="https://images.unsplash.com/photo-1629760946220-5693ee4c46ac?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Z2FtZXN8ZW58MHx8MHx8fDA%3D" >
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Small</mat-card-subtitle>
-      
-    </mat-card-title-group>
-  </mat-card-header>
-  <mat-card-content>
-    {{longText}}
-  </mat-card-content>
-
-  <mat-card-header>
-    <mat-card-title-group>
-      <img mat-card-sm-image src="https://images.unsplash.com/photo-1629760946220-5693ee4c46ac?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Z2FtZXN8ZW58MHx8MHx8fDA%3D" >
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Small</mat-card-subtitle>
-      
-    </mat-card-title-group>
-  </mat-card-header>
-  <mat-card-content>
-    {{longText}}
-  </mat-card-content>
+      <mat-card-title-group>
+        <img mat-card-sm-image [src]="game.image" alt="game image">
+        <mat-card-title>{{ game.title }}</mat-card-title>
+        <mat-card-subtitle>Juego destacado</mat-card-subtitle>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      {{ game.description }}
+    </mat-card-content>
   </div>
 </mat-card>
-
 
 
 

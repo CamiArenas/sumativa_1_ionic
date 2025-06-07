@@ -1,2 +1,19 @@
 // For information on how to create your own theme, please see:
 // http://ionicframework.com/docs/theming/
+:root {
+  /* Fondo claro */
+  --ion-background-color: #13e8f0;
+  --ion-text-color: #000000;
+
+  /* Toolbar clara */
+  --ion-toolbar-background: #000000;
+  --ion-toolbar-color: #13e8f0;
+
+  /* Tarjetas */
+  --ion-card-background: #ffffff;
+  --ion-card-color: #000000;
+
+  /* Botones */
+  --ion-color-primary: #00bcd4; /* cyan */
+  --ion-color-secondary: #ff9800; /* orange */
+}

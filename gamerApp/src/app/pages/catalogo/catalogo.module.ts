@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -9,6 +9,7 @@ import { CatalogoPageRoutingModule } from './catalogo-routing.module';
 import { CatalogoPage } from './catalogo.page';
 import { SideMenuComponent } from 'src/app/components/side-menu/side-menu.component';
 import {MatCardModule} from '@angular/material/card';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -18,6 +19,7 @@ import {MatCardModule} from '@angular/material/card';
     CatalogoPageRoutingModule,
     MatCardModule,
   ],
-  declarations: [CatalogoPage]
+  declarations: [CatalogoPage],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CatalogoPageModule {}

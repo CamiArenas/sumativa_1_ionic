@@ -14,73 +14,47 @@
     </ion-toolbar>
   </ion-header>
 
-  <div class="ion-padding">
-    <ion-title class="ion-text-center ion-margin ion-padding">
+  <ion-title class="ion-text-center ion-margin ion-padding">
       <h1>Catálogo</h1>
     </ion-title>
-    <mat-card color="info" class="example-card" appearance="outlined" style="color:aqua;">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Lego Mario World</mat-card-title>
-        <mat-card-subtitle>Nintendo</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="https://images.unsplash.com/photo-1633349105097-0d6ad738d78f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHZpZGVvanVlZ29zfGVufDB8MnwwfHx8MA%3D%3D" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <ion-button matButton>LIKE</ion-button>
-        <ion-button matButton>SHARE</ion-button>
-      </mat-card-actions>
-    </mat-card>
 
+  <div class="lottie-wrapper">
+      <lottie-player class="lottie-player" 
+      src="../../assets/animations/console.json"
+      background="transparent"
+      speed="1"
+      time="1"
+      loop autoplay
+      >
+    </lottie-player>
+  </div>
 
+  <div class="ion-padding" *ngFor="let game of games">
+    
+
+    
 
     <mat-card color="info" class="example-card" appearance="outlined" style="color:aqua;">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Shadow Warrior</mat-card-title>
-        <mat-card-subtitle>Pc</mat-card-subtitle>
+        <mat-card-title>{{ game.title }}</mat-card-title>
+        <mat-card-subtitle>{{ game.subtitle }}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="https://images.unsplash.com/photo-1727838204816-3e23b4a01bcb?q=80&w=1455&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Photo of a Shiba Inu">
+      <img mat-card-image [src]="game.image" alt="Foto juego">
       <mat-card-content>
         <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
+          {{ game.description }}
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <ion-button matButton>LIKE</ion-button>
-        <ion-button matButton>SHARE</ion-button>
+        <ion-button matButton (click)="btnComprar()">Comprar</ion-button>
+       
       </mat-card-actions>
     </mat-card>
+
+
     
 
 
-
-    <mat-card color="info" class="example-card" appearance="outlined" style="color:aqua;">
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Shadow Warrior</mat-card-title>
-        <mat-card-subtitle>Pc</mat-card-subtitle>
-      </mat-card-header>
-      <img mat-card-image src="https://images.unsplash.com/photo-1600066975952-912a81940822?q=80&w=1506&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Photo of a Shiba Inu">
-      <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
-        </p>
-      </mat-card-content>
-      <mat-card-actions>
-        <ion-button matButton>LIKE</ion-button>
-        <ion-button matButton>SHARE</ion-button>
-      </mat-card-actions>
-    </mat-card>
   </div>
 </ion-content>

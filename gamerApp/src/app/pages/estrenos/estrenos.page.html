@@ -1,13 +1,53 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>estrenos</ion-title>
+    <ion-title>Estrenos</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">estrenos</ion-title>
+      <ion-title size="large">Estrenos</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div class="lottie-wrapper">
+      <lottie-player class="lottie-player" 
+      src="../../assets/animations/estreno.json"
+      background="transparent"
+      speed="1"
+      time="1"
+      loop autoplay
+      >
+    </lottie-player>
+  </div>
+  
+  <div class="ion-padding" *ngFor="let game of games">
+    
+
+    
+
+    <mat-card color="info" class="example-card" appearance="outlined" style="background-color:#ff9800;color:rgb(0, 0, 0);">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ game.title }}</mat-card-title>
+        <mat-card-subtitle>{{ game.subtitle }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image [src]="game.image" alt="Foto juego">
+      <mat-card-content>
+        <p>
+          {{ game.description }}
+        </p>
+      </mat-card-content>
+      
+    </mat-card>
+
+
+    
+
+
+  </div>
 </ion-content>
