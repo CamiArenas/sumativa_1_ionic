@@ -26,7 +26,11 @@ const routes: Routes = [
   {
     path: 'ayuda-faq',
     loadChildren: () => import('./pages/ayuda-faq/ayuda-faq.module').then( m => m.AyudaFaqPageModule)
+  },  {
+    path: 'videojuegos',
+    loadChildren: () => import('./pages/videojuegos/videojuegos.module').then( m => m.VideojuegosPageModule)
   },
+
 ];
 
 @NgModule({

@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Videojuegos en oferta</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <div class="lottie-wrapper">
+      <lottie-player class="lottie-player" 
+      src="../../assets/animations/console.json"
+      background="transparent"
+      speed="1"
+      time="1"
+      loop autoplay
+      >
+    </lottie-player>
+  </div>
+  <ion-item>
+    <ion-label>
+      Buscar Juego: 
+    </ion-label>
+  </ion-item>
+  <ion-item>
+    
+    <ion-input
+      [(ngModel)]="tituloBuscado"
+      placeholder="Buscar juego"
+      (ionInput)="buscar()"
+    ></ion-input>
+  </ion-item>
+
+  <ion-card *ngFor="let juego of juegos">
+    <ion-img [src]="juego.thumb"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{ juego.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Precio normal:</strong> ${{ juego.normalPrice }}</p>
+      <p><strong>Oferta:</strong> ${{ juego.salePrice }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
