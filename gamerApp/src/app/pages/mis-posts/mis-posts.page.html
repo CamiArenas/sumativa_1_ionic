@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Mis Publicaciones</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list *ngIf="posts.length > 0; else sinPosts">
+    <ion-item *ngFor="let post of posts">
+      <ion-thumbnail slot="start" *ngIf="post.imagen">
+        <ion-img [src]="post.imagen"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ post.titulo }}</h2>
+        <p>{{ post.descripcion }}</p>
+      </ion-label>
+      <ion-button color="danger" fill="clear" (click)="eliminarPost(post.id)">
+        <ion-icon name="trash" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #sinPosts>
+    <ion-text class="ion-padding">
+      <p class="ion-text-center">Aún no hay publicaciones.</p>
+    </ion-text>
+  </ng-template>
+</ion-content>

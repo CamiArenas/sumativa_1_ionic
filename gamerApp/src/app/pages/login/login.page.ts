@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
+import { UserServiceService } from 'src/app/services/user-service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-
 
 @Component({
   selector: 'app-login',
@@ -11,50 +11,74 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   standalone: false,
 })
 export class LoginPage implements OnInit {
-
-  loginForm: FormGroup;
+  loginForm!: FormGroup;
 
   constructor(
-    public navCtrl: NavController,
+    private fb: FormBuilder,
+    private usuarioService: UserServiceService,
+    private navCtrl: NavController,
     private loadingCtrl: LoadingController,
-    private fb: FormBuilder
-  ) {
+    private toastCtrl: ToastController,
+    private router: Router,
+  ) {}
+
+  ngOnInit() {    
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
-    });
+    username: ['', [Validators.required]],  // ✅ CAMBIA AQUI
+    password: ['', Validators.required]
+  });
+
+    
   }
 
-  ngOnInit() {}
-
-  async onLogin() {
-    if (this.loginForm.invalid) {
-      this.loginForm.markAllAsTouched();
-      return;
-    }
-
-    console.log("Logeaste");
-
-    const loading: HTMLIonLoadingElement = await this.loadingCtrl.create({
-      spinner: 'circles',
-      cssClass: 'custom-spinner',
-      backdropDismiss: false,
-    });
-
-    await loading.present();
-
-    setTimeout(async () => {
-      await loading.dismiss();
-      this.navCtrl.navigateRoot('/home');
-    }, 3000);
-  }
-
-  get email() {
-    return this.loginForm.get('email');
+  get username() {
+    return this.loginForm.get('username');
   }
 
   get password() {
     return this.loginForm.get('password');
   }
-}
 
+  async onLogin() {
+    const loading = await this.loadingCtrl.create({
+      spinner: 'circles',
+      message: 'Iniciando sesión...',
+      backdropDismiss: false,
+    });
+    await loading.present();
+
+    try {
+      const user = await this.usuarioService.login(
+        this.username?.value,
+        this.password?.value
+      );
+      await loading.dismiss();
+
+      if (user) {
+        this.navCtrl.navigateRoot('/home');
+      } else {
+        const toast = await this.toastCtrl.create({
+          message: 'Usuario o contraseña incorrectos.',
+          duration: 3000,
+          color: 'danger'
+        });
+        toast.present();
+      }
+    } catch (err) {
+      await loading.dismiss();
+      const toast = await this.toastCtrl.create({
+        message: 'Error al acceder a la base de datos.',
+        duration: 3000,
+        color: 'danger'
+      });
+      toast.present();
+      console.error('Error en login:', err);
+    }
+  }
+
+  
+
+  redRegister() {
+    this.router.navigate(['/register']);
+  }
+}

@@ -29,26 +29,41 @@
     </mat-card-header>
 
     <ion-card-content>
-     <form [formGroup]="loginForm">
-  <ion-item>
-    <ion-label position="floating">Correo electrónico</ion-label>
-    <ion-input type="email" formControlName="email"></ion-input>
-  </ion-item>
-  <ion-text color="danger" *ngIf="email?.touched && email?.invalid">
-    <p *ngIf="email?.errors?.['required']">El correo es obligatorio.</p>
-    <p *ngIf="email?.errors?.['email']">Correo inválido.</p>
-  </ion-text>
+  
+  <form [formGroup]="loginForm">
+    <ion-item>
+      <ion-label position="floating">Nombre usuario</ion-label>
+      <ion-input type="text" formControlName="username"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="username?.touched && username?.invalid">
+      <p *ngIf="username?.errors?.['required']">El correo es obligatorio.</p>
+      <p *ngIf="username?.errors?.['username']">Correo inválido.</p>
+    </ion-text>
 
-  <ion-item>
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input type="password" formControlName="password"></ion-input>
-  </ion-item>
-  <ion-text color="danger" *ngIf="password?.touched && password?.invalid">
-    <p *ngIf="password?.errors?.['required']">La contraseña es obligatoria.</p>
-  </ion-text>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="password?.touched && password?.invalid">
+      <p *ngIf="password?.errors?.['required']">La contraseña es obligatoria.</p>
+    </ion-text>
 
-  <ion-button matButton elevated color="secondary" class="btn-login" (click)="onLogin()">Iniciar sesión</ion-button>
-</form>
+    <ion-button
+      [disabled]="loginForm.invalid"
+      expand="block"
+      color="secondary"
+      (click)="onLogin()"
+    >
+      Iniciar sesión
+    </ion-button>
+    <ion-button      
+      expand="block"
+      color="secondary"
+      (click)="redRegister()"
+    >
+      Registrarse
+    </ion-button>
+  </form>
 
     </ion-card-content>
   </mat-card>
